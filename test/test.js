@@ -5,7 +5,7 @@ var assert = require('assert');
 var WebSocketStream = require('../');
 var EchoServer = require('./echo-server');
 
-EchoServer.start(function(err) {
+EchoServer.start({}, function(err) {
   if (err) {
     console.log('start server failed with Exception:', e.message);
   } else {

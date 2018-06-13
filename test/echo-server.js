@@ -19,7 +19,12 @@ exports.start = function(options, cb) {
   options.server = server = http.createServer();
   ws.createServer(options, function(stream, req) {
     stream.on('data', function(chunk) {
-      var message = JSON.parse(chunk.toString());
+      try {
+        var message = JSON.parse(chunk.toString());
+      } catch (e) {
+        stream.write(chunk);
+        return;
+      }
 
       switch (message.event) {
         case 'echo':
