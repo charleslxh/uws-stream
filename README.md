@@ -1,4 +1,4 @@
-# websocket-stream
+# uws-stream
 
 [![Build Status](https://travis-ci.org/charleslxh/uws-stream.svg?branch=master)](https://travis-ci.org/charleslxh/uws-stream)
 
