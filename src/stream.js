@@ -63,6 +63,10 @@ class WebSocketStream extends Duplex {
     this[SOCKET].onmessage = this[ONMESSAGE].bind(this);
   }
 
+  get socket() {
+    return this[SOCKET];
+  }
+
   [MERGE_DEFAULT_OPTIONS](options) {
     return Object.assign({}, {
       objectMode: false,
