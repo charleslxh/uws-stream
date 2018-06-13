@@ -1,8 +1,11 @@
 'use strict';
 
-const stream = require('./src/stream');
-const server = require('./src/server');
+const Stream = require('./lib/stream');
+const Server = require('./lib/server');
 
-module.exports = stream;
-module.exports.server = server
-module.exports.createServer = createServer
+module.exports = Stream;
+module.exports.Server = Server;
+module.exports.createServer = function(opts, cb) {
+  return new Server(opts, cb);
+};
+

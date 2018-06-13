@@ -1,18 +1,18 @@
 'use strict';
 
-var WebSocketServer = require('uws').Server;
-var stream = require('./stream');
+const WebSocketServer = require('uws').Server;
+const WebSocketStream = require('./stream');
 
-class Server extends WebSocketServer{
+class Server extends WebSocketServer {
   constructor(opts, cb) {
     super(opts);
 
-    var proxied = false
-    this.on('newListener', function(event) {
+    let proxied = false;
+    this.on('newListener', (event) => {
       if (!proxied && event === 'stream') {
         proxied = true;
-        this.on('connection', function(conn, req) {
-          this.emit('stream', stream(conn, opts), req)
+        this.on('connection', (conn, req) => {
+          this.emit('stream', new WebSocketStream(conn, opts), req)
         });
       };
     });
@@ -23,7 +23,4 @@ class Server extends WebSocketServer{
   }
 };
 
-module.exports.Server = Server;
-module.exports.createServer = function(opts, cb) {
-  return new Server(opts, cb);
-};
+module.exports = Server;
