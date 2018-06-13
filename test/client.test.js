@@ -7,7 +7,7 @@ var EchoServer = require('./echo-server');
 
 describe('uws-stream', function() {
   describe('echo server wroks', function() {
-    before(function(donedone) {
+    before(function(done) {
       EchoServer.start({}, done);
     });
 

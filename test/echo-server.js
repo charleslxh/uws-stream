@@ -35,6 +35,10 @@ exports.start = function(options, cb) {
       }
     });
   });
+
+  server.once('listening', cb);
+  server.once('error', cb);
+  server.listen(exports.port);
 };
 
 exports.stop = function(cb) {
