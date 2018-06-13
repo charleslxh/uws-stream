@@ -67,6 +67,18 @@ class WebSocketStream extends Duplex {
     return this[SOCKET];
   }
 
+  get remotePort() {
+    return this[SOCKET] ? this[SOCKET]._socket.remotePort : null;
+  }
+
+  get remoteAddress() {
+    return this[SOCKET] ? this[SOCKET]._socket.remoteAddress : null;
+  }
+
+  get remoteFamily() {
+    return this[SOCKET] ? this[SOCKET]._socket.remoteFamily : null;
+  }
+
   [MERGE_DEFAULT_OPTIONS](options) {
     return Object.assign({}, {
       objectMode: false,

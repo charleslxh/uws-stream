@@ -17,6 +17,7 @@ EchoServer.start({}, function(err) {
 var stream = new WebSocketStream(EchoServer.url);
 
 stream.on('data', function(chunk) {
+  console.log(stream.remoteAddress);
   console.log('Your\'s input: ', chunk.toString());
 });
 
