@@ -1,0 +1,29 @@
+{
+  "name": "uws-stream",
+  "version": "1.0.0",
+  "description": "Use websockets with the node streams API (based on uws). Works in browser and node",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charleslxh/uws-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "uws"
+  ],
+  "author": "charles.liao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/charleslxh/uws-stream/issues"
+  },
+  "homepage": "https://github.com/charleslxh/uws-stream#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "uws": "^10.148.0"
+  }
+}
