@@ -4,6 +4,8 @@
 
 Wrappered [uWebSockets](https://github.com/uNetworking/uWebSockets) with the Node Streams API.
 
+**Support node version >= 4.**
+
 ## Install
 
 ```bash
