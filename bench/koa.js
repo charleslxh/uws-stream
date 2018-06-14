@@ -1,9 +1,9 @@
 'use strict';
 
-const koa = require('koa');
+const Koa = require('koa');
 
-const app = koa();
+const app = new Koa();
 
-app.use('*', (req, res) => res.end('OK'));
+app.use(ctx => ctx.body = 'OK');
 
 app.listen(7000, () => console.log('koa server started'));
