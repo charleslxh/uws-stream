@@ -1,7 +1,7 @@
 'use strict';
 
-const Stream = require('./src/stream');
-const Server = require('./src/server');
+const Stream = require('./lib/stream');
+const Server = require('./lib/server');
 
 module.exports = Stream;
 module.exports.Server = Server;

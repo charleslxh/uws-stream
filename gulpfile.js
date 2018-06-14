@@ -7,7 +7,10 @@ const babel = require('gulp-babel');
 gulp.task('build', function() {
   return gulp.src('src/**/*.js')
     .pipe(babel({
-      presets: ['es2015']
+      presets: [
+        ['env', { targets: { 'node': '4' } }]
+      ],
+      "plugins": ["transform-es2015-classes"]
     }))
     .pipe(gulp.dest('./lib/'))
 });

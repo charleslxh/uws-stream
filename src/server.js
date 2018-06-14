@@ -3,24 +3,27 @@
 const WebSocketServer = require('uws').Server;
 const WebSocketStream = require('./stream');
 
-class Server extends WebSocketServer {
+class Server {
   constructor(opts, cb) {
-    super(opts);
+    const server = new WebSocketServer(opts);
 
     let proxied = false;
-    this.on('newListener', (event) => {
+
+    server.on('newListener', (event) => {
       if (!proxied && event === 'stream') {
         proxied = true;
-        this.on('connection', (conn, req) => {
-          this.emit('stream', new WebSocketStream(conn, opts), req)
+        server.on('connection', (conn, req) => {
+          server.emit('stream', new WebSocketStream(conn, opts), req)
         });
       };
     });
 
     if (cb) {
-      this.on('stream', cb);
+      server.on('stream', cb);
     }
+
+    return server;
   }
-};
+}
 
 module.exports = Server;
