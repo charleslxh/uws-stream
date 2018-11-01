@@ -39,6 +39,10 @@ exports.start = function(options, cb) {
           break;
       }
     });
+
+    stream.on('close', function() {
+      console.log('[server] client closed');
+    })
   });
 
   server.once('listening', cb);

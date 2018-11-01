@@ -17,12 +17,20 @@ EchoServer.start({}, function(err) {
 var stream = new WebSocketStream(EchoServer.url);
 
 stream.on('data', function(chunk) {
-  console.log(stream.remoteAddress);
-  console.log('Your\'s input: ', chunk.toString());
+  console.log('[client] Your\'s input: ', chunk.toString());
+
+  if (chunk.toString().trim() === 'exit') {
+    stream.destroy();
+    stream.end();
+  }
 });
 
 stream.on('error', function(error) {
-  console.log('error', error);
+  console.log('[client] error', error);
+});
+
+stream.on('close', function() {
+  console.log('[client] client closed');
 });
 
 process.stdin.pipe(stream);

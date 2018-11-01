@@ -85,7 +85,8 @@ class WebSocketStream extends Duplex {
       protocols: null,
       browserBufferSize: 512 * 1024,
       browserBufferTimeout: 1000,
-      perMessageDeflate: false
+      perMessageDeflate: false,
+      debug: false
     }, options);
   }
 
@@ -114,17 +115,24 @@ class WebSocketStream extends Duplex {
   }
 
   _flush(cb) {
-    if (this[SOCKET]) this[SOCKET].close();
+    if (this[SOCKET]) {
+      this[SOCKET].close();
+      this.emit('close');
+    }
     if (cb) cb();
   }
 
   _destroy(err, cb) {
-    if (this[SOCKET]) this[SOCKET].close();
+    if (this[SOCKET]) {
+      this[SOCKET].close();
+      this.emit('close');
+    }
     if (err) this.emit('error', err);
     if (cb) cb();
   }
 
   [ONOPEN]() {
+    if (this.options.debug) console.log('[uws-stream] client connect');
     this.emit('connect');
     if (this[WRITE_BUFFER].length > 0) {
       for(let { chunk, encode } of this[WRITE_BUFFER]) {
@@ -134,17 +142,20 @@ class WebSocketStream extends Duplex {
   }
 
   [ONCLOSE]() {
+    if (this.options.debug) console.log('[uws-stream] client close');
     this.end();
     this.destroy();
   }
 
   [ONERROR](err) {
+    if (this.options.debug) console.log('[uws-stream] client err', err);
     this.destroy(err);
   }
 
   [ONMESSAGE](event) {
     const data = Buffer.from(event.data);
     this.push(data);
+    if (this.options.debug) console.log('[uws-stream] client message', data);
   }
 }
 
