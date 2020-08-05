@@ -35,7 +35,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "express": "^4.16.3",
-    "fastify": "^1.6.0",
+    "fastify": "^2.15.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.1",
     "gutil": "^1.6.4",
